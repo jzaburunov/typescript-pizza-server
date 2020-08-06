@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import { controller, get } from "../decorators";
+import { controller, post } from "../decorators";
 import passport from "passport";
 
 @controller("/auth")
 export class LoginController {
-  @get("/login")
+  @post("/login")
   login(req: Request, res: Response, next: NextFunction) {
     // Do login staff
     // Connect DB
