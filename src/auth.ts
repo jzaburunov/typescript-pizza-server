@@ -1,4 +1,7 @@
-const LocalStrategy = require("passport-local").Strategy;
+import PassportLocal from "passport-local";
+const LocalStrategy = PassportLocal.Strategy;
+
+import { User, IUser } from "./models/User";
 
 // TODO Fix any
 export const initPassport = (passport: any) => {
@@ -11,9 +14,18 @@ export const initPassport = (passport: any) => {
         passwordField: "password",
         passReqToCallback: true,
       },
-      (req, email, password, done: Function) => {
+      async (req, email, password, done: Function) => {
         // TODO Use db to see if user is there
-        done(null, "ololo", "OloData");
+        const user = await User.findOne({
+          email,
+        });
+        if (user) {
+          const result = await user.authenticate(password);
+          if (result) {
+            const token = "ololo";
+            done(null, token, user);
+          }
+        }
       }
     )
   );
