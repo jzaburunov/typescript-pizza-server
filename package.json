@@ -16,11 +16,14 @@
     "concurrently": "^5.2.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",
     "@types/morgan": "^1.9.1",
+    "@types/passport": "^1.0.4",
     "reflect-metadata": "^0.1.13"
   }
 }
