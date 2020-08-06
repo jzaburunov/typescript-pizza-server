@@ -1,7 +1,8 @@
-import passport from "passport";
 const LocalStrategy = require("passport-local").Strategy;
 
 export const initPassport = () => {
+// TODO Fix any
+export const initPassport = (passport: any) => {
   console.log("iniPassport");
   passport.use(
     "local-signin",

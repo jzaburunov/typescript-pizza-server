@@ -12,8 +12,6 @@ export class LoginController {
     // If yes, set session token
     // if no, send auth error
     return passport.authenticate("local-signin", (err, user, userData) => {
-      // console.log(userData);
-      // console.log(err);
       if (err) {
         res.status(401).send("Forbidden. Please, login");
       } else {
