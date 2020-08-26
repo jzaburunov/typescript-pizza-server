@@ -11,11 +11,18 @@ export class LoginController {
     // See if hash is equal to one stored in the db
     // If yes, set session token
     // if no, send auth error
-    return passport.authenticate("local-signin", (err, user, userData) => {
+    return passport.authenticate("local-signin", (err, token, userData) => {
       if (err) {
         res.status(401).send("Forbidden. Please, login");
       } else {
-        res.send(`You are welcome, ${user} with data: ${userData}`);
+        res.send({
+          success: true,
+          token,
+          user: {
+            username: userData.username,
+            roles: userData.roles,
+          },
+        });
       }
     })(req, res, next);
   }

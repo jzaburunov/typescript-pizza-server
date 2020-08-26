@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 import crypto from "crypto";
 
 const generateHashedPassword = (salt: string, password: string) => {
