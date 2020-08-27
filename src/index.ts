@@ -1,7 +1,8 @@
 // v TODO Create web server
 // v Add logging
-// Handle login route - controller router
-// Handle route /pizzas/all - create controller class
+// v Handle login route - controller router
+// * Handle route /pizzas/all - create controller class
+// Handle signUp route
 import express from "express";
 import morgan from "morgan";
 import passport from "passport";

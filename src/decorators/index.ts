@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import { AppRouter } from "../router";
+import { RequestHandler } from "express";
 
 const router = AppRouter.getInstance();
 
@@ -17,9 +18,26 @@ export function controller(routePrefix: string): Function {
         target.prototype,
         key
       );
-      // TODO Use middlewares
-      router[method](`${routePrefix}${path}`, target.prototype[key]);
+      const middlewares =
+        Reflect.getMetadata("middleware", target.prototype, key) || [];
+      router[method](
+        `${routePrefix}${path}`,
+        ...middlewares,
+        target.prototype[key]
+      );
     }
+  };
+}
+
+export function use(middleware: RequestHandler): Function {
+  return (target: any, key: string) => {
+    const middlewares = Reflect.getMetadata("middleware", target, key) || [];
+    Reflect.defineMetadata(
+      "middleware",
+      [...middlewares, middleware],
+      target,
+      key
+    );
   };
 }
 
