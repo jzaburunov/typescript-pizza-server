@@ -12,7 +12,10 @@ import cors from "cors";
 import bodyParser from "body-parser";
 initPassport(passport);
 import "./controllers/LoginController";
+import "./controllers/PizzaController";
 import { AppRouter } from "./router";
+
+// TODO Use passport initialize
 
 const appRouter = AppRouter.getInstance();
 const PORT = process.env.PORT || 3001;
